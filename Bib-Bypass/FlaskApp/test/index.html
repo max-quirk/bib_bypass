@@ -1,0 +1,68 @@
+<!doctype HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bib Bypass</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Muli%7CRoboto:400,300,500,700,900" rel="stylesheet">
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="main-nav">
+        <ul class="nav">
+            <li class="name">
+                <a href="#">
+                    <img id="small-logo" src="images/small-logo.png" alt="logo">
+                </a>
+            </li>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="about.html" target="_blank">About</a>
+            </li>
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <header>
+        <h1 align="center">BIB BYPASS<h1>
+    </header>
+    <main>
+        <input class="keywords" id="keyword_1"></br>
+        <div id="input2">
+            <input class="keywords" id="keyword_2" tabindex="-1"></br>
+        </div>        
+        <div id="input3">
+            <input class="keywords" id="keyword_3"></br>
+        </div> 
+        <div id="input4">
+            <input class="keywords" id="keyword_4"></br>
+        </div> 
+        <img id="addBtn" src="images/add.png" alt="Add keyword"></br>
+        <div id = "numCitations">
+            <h4>Number of citations:</h4>
+            <select id="citationCount">
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </div>
+        <button class="Btns" id="nextBtn">Next</button>
+        <button class="Btns" id="citeBtn">Cite</button>
+    </main>
+    <script src="main.js?v=1"></script> 
+</body>
+
+</html>
