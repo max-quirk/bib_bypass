@@ -19,7 +19,9 @@ def hello():
     count = 0
     citations = []
 
-    def operation(keyword_x):
+    def operation(keyword_x, index):
+        print('index: ' + str(index))
+        index = int(index)
 
         querier = scholar.ScholarQuerier()
         settings = scholar.ScholarSettings()
@@ -28,18 +30,19 @@ def hello():
         query = scholar.SearchScholarQuery()
         query.set_author("")
         query.set_words(str(keyword_x))
-        query.set_num_page_results(1)
+        query.set_num_page_results(5)
 
         querier.send_query(query)
         # Print the URL of the first article found
-        url = querier.articles[0]['url']
-        title = querier.articles[0]['title']
-        year = querier.articles[0]['year']
+        url = str(querier.articles[index]['url'])
+        title = str(querier.articles[index]['title'])
+        year = str(querier.articles[index]['year'])
         author = ""
         publication = "Publication"
 
-        line = author + "'" + title + "'. " +
-            publication + '. ' + year + ", " + url + "."
+        line = author + "'" + title + "'. " + \
+            publication + ". " + year + ", " + url + "."
+
         citations.append(line)
 
     # for keyword in keywords:
@@ -53,7 +56,15 @@ def hello():
         if i == len(keywords):
             i -= len(keywords)
 
-        operation(keywords[i])
+        if count < len(keywords):
+            operation(keywords[i], 0)
+
+        if count >= keywords and count < (2 * len(keywords)):
+            operation(keywords[i], 1)
+
+        if count >= (3 * len(keywords)):
+            operation(keywords[i], 2)
+
         count += 1
         i += 1
 
