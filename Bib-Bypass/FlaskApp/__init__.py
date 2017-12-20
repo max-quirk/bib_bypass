@@ -1,41 +1,74 @@
+import scholar
 from flask import Flask, render_template, request
 app = Flask(__name__)
-@app.route("/", methods=['GET','POST'])
+
+
+@app.route("/", methods=['GET', 'POST'])
 def hello():
     print('main...')
-    return render_template('index.html')
-
     if request.method == 'GET':
-        print('changing...')
+        return render_template('index.html')
 
-    payload = request.form('payload')
-    keywords = payload(keywords)
-    citationCount = payload(citationCount)
-    citations = []
+    keyword_1 = request.form.get('keyword_1')
+    keyword_2 = request.form.get('keyword_2')
+    keyword_3 = request.form.get('keyword_3')
+    keyword_4 = request.form.get('keyword_4')
+    citationCount = int(request.form.get('citationCount'))
+    keywords = [keyword_1, keyword_2, keyword_3, keyword_4]
+    i = 0
     count = 0
+    citations = []
 
-    def operation(keyword):
-        count += 1
-        line = keyword
+    def operation(keyword_x):
+
+        querier = scholar.ScholarQuerier()
+        settings = scholar.ScholarSettings()
+        querier.apply_settings(settings)
+
+        query = scholar.SearchScholarQuery()
+        query.set_author("")
+        query.set_words(str(keyword_x))
+        query.set_num_page_results(1)
+
+        querier.send_query(query)
+        # Print the URL of the first article found
+        url = querier.articles[0]['url']
+        title = querier.articles[0]['title']
+        year = querier.articles[0]['year']
+        author = ""
+        publication = "Publication"
+
+        line = author + "'" + title + "'. " +
+            publication + '. ' + year + ", " + url + "."
         citations.append(line)
-    
-    while count <= citationCount:
-        for i in keywords:
-            operation(i)
+
+    # for keyword in keywords:
+    #     if keyword != "":
+    #         for i in range(citationCount):
+    #             operation(keyword)
+
+    while count < citationCount:
+        print('count = ' + str(count))
+        print('citationCount = ' + str(citationCount))
+        if i == len(keywords):
+            i -= len(keywords)
+
+        operation(keywords[i])
+        count += 1
+        i += 1
+
+    # for i in (keywords):
+    #     if count <= citationCount:
+    #         if i != "":
+    #             count += 1
+    #             print(i)
+    #             operation(i)
 
     citations = sorted(citations)
-
     print(citations)
 
-@app.route("/citation", methods=["GET", "POST"])
-def citation():
-    print("citation...")
-    return render_template('citation.html', cite1=citations[0],  cite2=citations[1], 
-        cite3=citations[2], cite4=citations[3],  cite5=citations[4],  cite6=citations[5], 
-        cite7=citations[6], cite8=citations[7],  cite9=citations[8], cite10=citations[9],  
-        cite11=citations[10], cite12=citations[11],  cite13=citations[12],  cite14=citations[13],  
-        cite15=citations[14], cite16=citations[15],  cite17=citations[16],  cite18=citations[17])
+    return render_template('citation.html', citations=citations)
+
 
 if __name__ == "__main__":
     app.run()
-

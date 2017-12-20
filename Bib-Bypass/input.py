@@ -1,15 +1,17 @@
+#
+
 import scholar
+
 querier = scholar.ScholarQuerier()
 settings = scholar.ScholarSettings()
 querier.apply_settings(settings)
+
 query = scholar.SearchScholarQuery()
+query.set_author("")
+query.set_words("america")
+query.set_num_page_results(1)
 
-searchphrase = str(input('keyword: '))
-
-def searchScholar(searchphrase):
-    query.set_words(searchphrase)
-    query.get_url()
-    querier.send_query(query)
-    print(scholar.csv(querier))
-
-searchScholar('Evaluating technologies for education')
+querier.send_query(query)
+# Print the URL of the first article found
+print querier.articles[0]['url']
+print querier.articles[0]['author']

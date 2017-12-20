@@ -34,35 +34,43 @@
     </div>
 
     <header>
-        <h1 align="center">BIB BYPASS<h1>
+        <h1 align="center">BIB BYPASS
+            <h1>
     </header>
     <main>
-        <input class="keywords" id="keyword_1"></br>
-        <div id="input2">
-            <input class="keywords" id="keyword_2" tabindex="-1"></br>
-        </div>        
-        <div id="input3">
-            <input class="keywords" id="keyword_3"></br>
-        </div> 
-        <div id="input4">
-            <input class="keywords" id="keyword_4"></br>
-        </div> 
-        <img id="addBtn" src="static/images/add.png" alt="Add keyword"></br>
-        <div id = "numCitations">
-            <h4>Number of citations:</h4>
-            <select id="citationCount">
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-            </select>
-        </div>
-        <button class="Btns" id="nextBtn">Next</button>
-        <button class="Btns" id="citeBtn">Cite</button>
+        <form type="submit" action="/" method="POST">
+            <input class="keywords" id="keyword_1" name="keyword_1">
+            </br>
+            <div id="input2">
+                <input class="keywords" id="keyword_2" tabindex="-1" name="keyword_2">
+                </br>
+            </div>
+            <div id="input3">
+                <input class="keywords" id="keyword_3" name="keyword_3">
+                </br>
+            </div>
+            <div id="input4">
+                <input class="keywords" id="keyword_4" name="keyword_4">
+                </br>
+            </div>
+            <img id="addBtn" src="static/images/add.png" alt="Add keyword">
+            </br>
+            <div id="numCitations">
+                <h4>Number of citations:</h4>
+                <select id="citationCount" name="citationCount">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+            </div>
+            <a class="Btns" id="nextBtn">Next</a>
+            <button class="Btns" id="citeBtn">Cite</button>
+        </form>
     </main>
-    <script src="static/correct.js"></script> 
+    <script src="static/correct.js"></script>
 </body>
 
 </html>
