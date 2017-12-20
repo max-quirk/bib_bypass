@@ -14,7 +14,15 @@ def hello():
     keyword_3 = request.form.get('keyword_3')
     keyword_4 = request.form.get('keyword_4')
     citationCount = int(request.form.get('citationCount'))
+    print('citationCount = ' + str(citationCount))
     keywords = [keyword_1, keyword_2, keyword_3, keyword_4]
+    print('original keywords = ' + str(keywords))
+    print('keyword_4 = ' + str(keyword_4))
+    print('keyword[3] = ' + str(keywords[3]))
+
+    keywords = [i for i in keywords if len(i.strip()) > 0]
+
+    print(keywords)
     i = 0
     count = 0
     citations = []
@@ -43,6 +51,8 @@ def hello():
         line = author + "'" + title + "'. " + \
             publication + ". " + year + ", " + url + "."
 
+        print(line)
+
         citations.append(line)
 
     # for keyword in keywords:
@@ -52,17 +62,17 @@ def hello():
 
     while count < citationCount:
         print('count = ' + str(count))
-        print('citationCount = ' + str(citationCount))
+        print('len(keywords) = ' + str(len(keywords)))
         if i == len(keywords):
             i -= len(keywords)
 
         if count < len(keywords):
             operation(keywords[i], 0)
 
-        if count >= keywords and count < (2 * len(keywords)):
+        elif count >= len(keywords) and count < (2 * len(keywords)):
             operation(keywords[i], 1)
 
-        if count >= (3 * len(keywords)):
+        elif count >= (2 * len(keywords)) and count < (3 * len(keywords)):
             operation(keywords[i], 2)
 
         count += 1
