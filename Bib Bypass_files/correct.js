@@ -13,13 +13,7 @@ function doFirst() {
     var input4 = document.getElementById('keyword_4')
     var citeBtn = document.getElementById('citeBtn')
     var numCitations = document.getElementById('numCitations')
-    var surely = document.getElementById('surely')
-    var main = document.getElementsByClassName('main')
-    var step2 = document.getElementById('step2')
-    var bottom = document.getElementById('bottom')
 
-
-    citeBtn.addEventListener("click", clickedCite)
 
     input1.addEventListener("keydown", function (e) {
         if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
@@ -69,21 +63,13 @@ function addInput() {
 }
 
 function next1() {
-    console.log(123)
     addBtn.style.display = 'none'
     //for(var i=0; i<keywordsInput.length; i++){
     //    keywordsInput[i].style.display = 'none'
     //}
+    numCitations.style.display = 'block'
     nextBtn.style.display = 'none'
-    step2.style.display = 'block'
-    bottom.style.display = 'block'
-
-}
-
-function clickedCite() {
-    console.log('clicked site')
-    surely.style.display = 'block'
-    main.style.display = 'none'
+    citeBtn.style.display = 'block'
 }
 
 

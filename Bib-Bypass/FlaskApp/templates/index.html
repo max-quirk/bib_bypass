@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="utf-8">
+    <script src="https://use.fontawesome.com/e63904aba2.js"></script>
     <title>Bib Bypass</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="fonts/stylesheet.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Muli%7CRoboto:400,300,500,700,900" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
@@ -34,29 +36,40 @@
     </div>
 
     <header>
-        <h1 align="center">BIB BYPASS
-            <h1>
+        <h1 align="center">BIB BYPASS</h1>
     </header>
-    <main>
-        <form type="submit" action="/" method="POST">
-            <input class="keywords" id="keyword_1" name="keyword_1">
+    <div id="surely">
+        <div class="loader">Loading...</div>
+    </div>
+    <main class="main">
+        <img src="static/images/step1.png" alt="Step 1" id="step1">
+        <form type="submit" action="/" method="POST" id="form1">
+            <section id="top">
+                <p align="left">Enter keywords related to the work you are citing: </p>
+                <input class="keywords" id="keyword_1" name="keyword_1">
+                <!-- </br> -->
+                <div id="input2">
+                    <input class="keywords" id="keyword_2" name="keyword_2">
+                    <!-- </br> -->
+                </div>
+                <div id="input3">
+                    <input class="keywords" id="keyword_3" name="keyword_3">
+                    <!-- </br> -->
+                </div>
+                <div id="input4">
+                    <input class="keywords" id="keyword_4" name="keyword_4">
+                    <!-- </br> -->
+                </div>
+                <img id="addBtn" src="static/images/add.png" alt="Add keyword">
+                </br>
+                <a class="Btns" id="nextBtn">Next</a>
+            </section>
             </br>
-            <div id="input2">
-                <input class="keywords" id="keyword_2" tabindex="-1" name="keyword_2">
-                </br>
-            </div>
-            <div id="input3">
-                <input class="keywords" id="keyword_3" name="keyword_3">
-                </br>
-            </div>
-            <div id="input4">
-                <input class="keywords" id="keyword_4" name="keyword_4">
-                </br>
-            </div>
-            <img id="addBtn" src="static/images/add.png" alt="Add keyword">
             </br>
-            <div id="numCitations">
-                <h4>Number of citations:</h4>
+            </br>
+            <img align="left" src="static/images/step2.png" alt="Step 2" id="step2">
+            <section id="bottom">
+                <p>Number of citations:</p>
                 <select id="citationCount" name="citationCount">
                     <option value="4">4</option>
                     <option value="5">5</option>
@@ -65,9 +78,17 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-            </div>
-            <a class="Btns" id="nextBtn">Next</a>
-            <button class="Btns" id="citeBtn">Cite</button>
+                </br>
+                <button class="Btns" id="citeBtn">Cite</button>
+                <!-- <div class="type-1">
+                    <a onclick="document.getElementById('form1').submit();" id="citeBtn" href="" class="btn btn-1">
+                        <span class="txt">CITE</span>
+                        <span class="round">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </div> -->
+            </section>
         </form>
     </main>
     <script src="static/correct.js"></script>
