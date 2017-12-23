@@ -7,7 +7,7 @@ app = Flask(__name__)
 def hello():
     print('main...')
     if request.method == 'GET':
-        return render_template('index.html')
+        return render_template('title.html')
 
     keyword_1 = request.form.get('keyword_1')
     keyword_2 = request.form.get('keyword_2')

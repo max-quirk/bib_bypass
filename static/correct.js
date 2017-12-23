@@ -5,7 +5,6 @@ console.log('correct version')
 function doFirst() {
     var addBtn = document.getElementById('addBtn')
     var keywordsInput = document.querySelectorAll('.keywords')
-    var nextBtn = document.getElementById('nextBtn')
     var keywords = document.getElementsByClassName('keywords')
     var input1 = document.getElementById('keyword_1')
     var input2 = document.getElementById('keyword_2')
@@ -14,11 +13,13 @@ function doFirst() {
     var citeBtn = document.getElementById('citeBtn')
     var numCitations = document.getElementById('numCitations')
     var surely = document.getElementById('surely')
-    var main = document.getElementsByClassName('main')
+    var form_div = document.getElementById('form_div')
     var step2 = document.getElementById('step2')
     var bottom = document.getElementById('bottom')
+    var title_button = document.getElementById('title_button')
+    var firstPage = document.getElementById('firstPage')
 
-
+    title_button.addEventListener("click", change, false)
     citeBtn.addEventListener("click", clickedCite)
 
     input1.addEventListener("keydown", function (e) {
@@ -43,7 +44,12 @@ function doFirst() {
         }
     });
     addBtn.addEventListener('click', addInput, false)
-    nextBtn.addEventListener('click', next1, false)
+}
+
+function change() {
+    firstPage.style.display = 'none'
+    form_div.style.display = 'block'
+    console.log('title_page')
 }
 
 function addInput() {

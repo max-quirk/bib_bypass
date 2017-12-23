@@ -1,3 +1,49 @@
+h1 {
+	color: black;
+	font-family: 'Cormorant Garamond';
+	border-bottom: 3px solid #e66c7e;
+	font-size: 48px;
+	font-weight: 400;
+	line-height: 72px;
+	letter-spacing: 35px;
+	margin-bottom: 57px;
+	text-align: center;
+	text-indent: 24px;
+	text-transform: uppercase;
+}
+
+p {
+	color:black;
+
+	font-family: 'Cormorant Garamond';
+	font-size: 28px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 48px;
+	max-width: 640px;
+	margin: 0 auto 48px;
+	text-align: center;
+}
+
+a {
+	color: #e66c7e;	border-bottom: 2px solid #e66c7e;
+	font-family: 'Cormorant Garamond';
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+a:hover {
+	color: black;
+	border-bottom: 2px solid black;
+}
+
+body {
+  background-color: white;
+}
+
 * { 
   box-sizing: border-box;
 }
@@ -10,9 +56,13 @@ body {
   background: #f7f5f0;
 }
 
-h1 {
-  font-family: 'halis_grbook';
-  font-size: 4em;
+body {
+  background: #1d1d1d;
+}
+
+.wrap {
+  width: 765px;
+  margin: 0 auto;
 }
 
 a {
@@ -27,8 +77,6 @@ a:hover {
 
 input {
   text-align: center;
-}
-
 }
 
 #copy {
@@ -105,56 +153,9 @@ p {
   display:none;
 }
 
-.main-nav {
-  width: 100%;
-  background: black;
-  min-height: 30px;
-  padding: 10px;
-  position: fixed;
-  text-align: center;
-}
 
-.nav {
-  display: flex;
-  justify-content: space-around;
-  font-weight: 700;
-  list-style-type: none;
-  margin: 0 auto;
-  padding: 0;
-}
-.nav .name {
-  display: none;
-  padding:0px;
-}
-
-#small-logo {
-  margin-bottom:0px;
-}
-
-.nav li {
-  padding: 7px 10px 0px 10px;
-}
-.nav a {
-  transition: all .5s;
-  color:white;
-}
-.nav a:hover {
-  color: #0499ff
-}
 select {
   margin:auto;
-}
-
-#step1 {
-  margin-left:30%;
-  size:20px;
-}
-
-#step2 {
-  margin-top:30px;
-  margin-left:30%;
-  float: left;
-  display:none;
 }
 
 #top {
@@ -171,19 +172,6 @@ select {
   display: none;
 }
 
-header {
-  text-align: center;
-  /*background-repeat: no-repeat;*/
-  margin:auto;
-  /*background-size: cover;*/
-  /*overflow: hidden;*/
-  padding-top: 30px;
-  background-color:#7CB97E;
-  height:100px
-}
-header {
-  line-height: 1.5;
-}
 
 .logo{
   margin-top: 170px;
@@ -366,13 +354,13 @@ a.bigsocial:hover {
     color: white;
   }
 
-  .main {
+  #form_div {
     padding-top: 40px;
     width:100%;
-    display:auto;
+    display:none;
   }
 
-  .main p {
+  #form_div p {
     line-height: 1.6em;
   }
 
