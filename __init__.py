@@ -29,6 +29,7 @@ def hello():
 
     def operation(keyword_x, index):
         print('index: ' + str(index))
+        print('keyword: ' + str(keyword_x))
         index = int(index)
 
         querier = scholar.ScholarQuerier()

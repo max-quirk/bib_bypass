@@ -18,9 +18,14 @@ function doFirst() {
     var bottom = document.getElementById('bottom')
     var title_button = document.getElementById('title_button')
     var firstPage = document.getElementById('firstPage')
+    var form1 = document.getElementById('form1')
 
-    title_button.addEventListener("click", change, false)
-    citeBtn.addEventListener("click", clickedCite)
+    // form1.addEventListener("submit", function (evt) {
+    //     evt.preventDefault()
+    //     console.log('submitted')
+    //     surely.style.display = 'block'
+    //     main.style.display = 'none'
+    // })
 
     input1.addEventListener("keydown", function (e) {
         if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
@@ -88,8 +93,6 @@ function next1() {
 
 function clickedCite() {
     console.log('clicked site')
-    surely.style.display = 'block'
-    main.style.display = 'none'
 }
 
 
