@@ -24,6 +24,7 @@ def hello():
 
     print(keywords)
     i = 0
+    x = 0
     count = 0
     citations = []
 
@@ -42,16 +43,27 @@ def hello():
         query.set_num_page_results(11)
 
         querier.send_query(query)
-        # Print the URL of the first article found
-        url = querier.articles[index]['url'].encode('utf-8')
-        title = querier.articles[index]['title'].encode('utf-8')
-        year = querier.articles[index]['year'].encode('utf-8')
+
+        try:
+            url = querier.articles[index]['url'].encode('utf-8')
+        except AttributeError:
+            url = "No URL"
+
+        try:
+            title = querier.articles[index]['title'].encode('utf-8')
+        except AttributeError:
+            url = "No Title"
+
+        try:
+            year = querier.articles[index]['year'].encode('utf-8')
+        except AttributeError:
+            year = "No Date"
 
         author = ""
         publication = ""
 
-        line = """author.decode('utf-8') +""" "'" + title.decode('utf-8') + \
-            "'. " """+ publication.decode('utf-8') + ". " """ + \
+        line = "'" + title.decode('utf-8') + \
+            "'. " + \
             year.decode('utf-8') + ", " + url.decode('utf-8') + "."
 
         print(line)
@@ -68,44 +80,77 @@ def hello():
         print('len(keywords) = ' + str(len(keywords)))
         if i == len(keywords):
             i -= len(keywords)
+            x += 1
 
-        if count < len(keywords):
-            x = 0
+        # if count < len(keywords):
+        #     x = 0
         # WILL FIX THIS UP:
-        elif count >= len(keywords) and count < (2 * len(keywords)):
-            x = 1
+        # elif count >= len(keywords) and count < (2 * len(keywords)):
+        #     x = 1
 
-        elif count >= (2 * len(keywords)) and count < (3 * len(keywords)):
-            x = 2
+        # elif count >= (2 * len(keywords)) and count < (3 * len(keywords)):
+        #     x = 2
 
-        elif count >= (3 * len(keywords)) and count < (4 * len(keywords)):
-            x = 3
+        # elif count >= (3 * len(keywords)) and count < (4 * len(keywords)):
+        #     x = 3
 
-        elif count >= (4 * len(keywords)) and count < (5 * len(keywords)):
-            x = 4
+        # elif count >= (4 * len(keywords)) and count < (5 * len(keywords)):
+        #     x = 4
 
-        elif count >= (5 * len(keywords)) and count < (6 * len(keywords)):
-            x = 5
+        # elif count >= (5 * len(keywords)) and count < (6 * len(keywords)):
+        #     x = 5
 
-        elif count >= (6 * len(keywords)) and count < (7 * len(keywords)):
-            x = 6
+        # elif count >= (6 * len(keywords)) and count < (7 * len(keywords)):
+        #     x = 6
 
-        elif count >= (7 * len(keywords)) and count < (8 * len(keywords)):
-            x = 7
+        # elif count >= (7 * len(keywords)) and count < (8 * len(keywords)):
+        #     x = 7
 
-        elif count >= (8 * len(keywords)) and count < (9 * len(keywords)):
-            x = 8
+        # elif count >= (8 * len(keywords)) and count < (9 * len(keywords)):
+        #     x = 8
 
-        elif count >= (9 * len(keywords)) and count < (10 * len(keywords)):
-            x = 9
+        # elif count >= (9 * len(keywords)) and count < (10 * len(keywords)):
+        #     x = 9
+
+        # WILL FIX THIS REDUNDANCY
         try:
             operation(keywords[i], x)
         except IndexError:
             keywords.remove(keywords[i])
-            x += 1
+            print('FIRST EXCEPTION')
+            if i == len(keywords):
+                i -= len(keywords)
+                x += 1
             if not keywords:
                 break
-            operation(keywords[i], x)
+            try:
+                operation(keywords[i], x)
+            except IndexError:
+                keywords.remove(keywords[i])
+                print('SECOND EXCEPTION')
+                if i == len(keywords):
+                    i -= len(keywords)
+                if not keywords:
+                    break
+                try:
+                    operation(keywords[i], x)
+                except IndexError:
+                    keywords.remove(keywords[i])
+                    print('THIRD EXCEPTION')
+                    if i == len(keywords):
+                        i -= len(keywords)
+                    if not keywords:
+                        break
+                    try:
+                        operation(keywords[i], x)
+                    except IndexError:
+                        keywords.remove(keywords[i])
+                        print('FOURTH EXCEPTION')
+                        if i == len(keywords):
+                            i -= len(keywords)
+                        if not keywords:
+                            print('breaking...')
+                            break
 
         count += 1
         i += 1
