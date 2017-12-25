@@ -5,6 +5,6 @@
 3. Go to http://127.0.0.1:5000/ in your browser
 
 Problems to be fixed:
-- If you enter a keyword which does not yield any results, a server error will occur
-- Loading screen  
 - Retrieving authors and publications
+- When you make too many queries to API blocks you temporarily for about a day - will add cookies to fix this.
+- Tidy up redundant if statements in __init__.py

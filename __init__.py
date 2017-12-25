@@ -48,11 +48,11 @@ def hello():
         year = querier.articles[index]['year'].encode('utf-8')
 
         author = ""
-        publication = "Publication"
+        publication = ""
 
-        line = author.decode('utf-8') + "'" + title.decode('utf-8') + "'. " + \
-            publication.decode(
-                'utf-8') + ". " + year.decode('utf-8') + ", " + url.decode('utf-8') + "."
+        line = """author.decode('utf-8') +""" "'" + title.decode('utf-8') + \
+            "'. " """+ publication.decode('utf-8') + ". " """ + \
+            year.decode('utf-8') + ", " + url.decode('utf-8') + "."
 
         print(line)
 
