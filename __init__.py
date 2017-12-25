@@ -39,18 +39,20 @@ def hello():
         query = scholar.SearchScholarQuery()
         query.set_author("")
         query.set_words(str(keyword_x))
-        query.set_num_page_results(5)
+        query.set_num_page_results(11)
 
         querier.send_query(query)
         # Print the URL of the first article found
-        url = str(querier.articles[index]['url'])
-        title = str(querier.articles[index]['title'])
-        year = str(querier.articles[index]['year'])
+        url = querier.articles[index]['url'].encode('utf-8')
+        title = querier.articles[index]['title'].encode('utf-8')
+        year = querier.articles[index]['year'].encode('utf-8')
+
         author = ""
         publication = "Publication"
 
-        line = author + "'" + title + "'. " + \
-            publication + ". " + year + ", " + url + "."
+        line = author.decode('utf-8') + "'" + title.decode('utf-8') + "'. " + \
+            publication.decode(
+                'utf-8') + ". " + year.decode('utf-8') + ", " + url.decode('utf-8') + "."
 
         print(line)
 
@@ -68,13 +70,42 @@ def hello():
             i -= len(keywords)
 
         if count < len(keywords):
-            operation(keywords[i], 0)
-
+            x = 0
+        # WILL FIX THIS UP:
         elif count >= len(keywords) and count < (2 * len(keywords)):
-            operation(keywords[i], 1)
+            x = 1
 
         elif count >= (2 * len(keywords)) and count < (3 * len(keywords)):
-            operation(keywords[i], 2)
+            x = 2
+
+        elif count >= (3 * len(keywords)) and count < (4 * len(keywords)):
+            x = 3
+
+        elif count >= (4 * len(keywords)) and count < (5 * len(keywords)):
+            x = 4
+
+        elif count >= (5 * len(keywords)) and count < (6 * len(keywords)):
+            x = 5
+
+        elif count >= (6 * len(keywords)) and count < (7 * len(keywords)):
+            x = 6
+
+        elif count >= (7 * len(keywords)) and count < (8 * len(keywords)):
+            x = 7
+
+        elif count >= (8 * len(keywords)) and count < (9 * len(keywords)):
+            x = 8
+
+        elif count >= (9 * len(keywords)) and count < (10 * len(keywords)):
+            x = 9
+        try:
+            operation(keywords[i], x)
+        except IndexError:
+            keywords.remove(keywords[i])
+            x += 1
+            if not keywords:
+                break
+            operation(keywords[i], x)
 
         count += 1
         i += 1
@@ -88,6 +119,13 @@ def hello():
 
     citations = sorted(citations)
     print(citations)
+
+    if len(citations) != citationCount:
+        if not citations:
+            citations.append('Sorry, no results')
+        else:
+            citations.append('Sorry, could not find %s results' %
+                             citationCount)
 
     return render_template('citation.html', citations=citations)
 

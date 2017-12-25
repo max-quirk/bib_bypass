@@ -57,11 +57,13 @@ function change() {
     console.log('title_page')
 }
 
-function addInput() {
+function addInput(e) {
     inputNum += 1
     console.log(inputNum)
     if (inputNum == 2) {
         input2.style.display = 'block'
+        input2.focus();
+        input2.select();
         window.setTimeout(function () {
             console.log('SET TIMEOUT')
             input2.focus()
@@ -71,11 +73,13 @@ function addInput() {
     if (inputNum == 3) {
         input3.style.display = 'block'
         input3.focus();
+        input3.select();
     }
     if (inputNum == 4) {
         input4.style.display = 'block'
         addBtn.style.display = 'none'
         input4.focus();
+        input4.select();
     }
 }
 
