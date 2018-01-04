@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
-    print('main...')
     if request.method == 'GET':
         return render_template('title.html')
 
@@ -14,11 +13,8 @@ def hello():
     keyword_3 = request.form.get('keyword_3')
     keyword_4 = request.form.get('keyword_4')
     citationCount = int(request.form.get('citationCount'))
-    print('citationCount = ' + str(citationCount))
+
     keywords = [keyword_1, keyword_2, keyword_3, keyword_4]
-    print('original keywords = ' + str(keywords))
-    print('keyword_4 = ' + str(keyword_4))
-    print('keyword[3] = ' + str(keywords[3]))
 
     keywords = [i for i in keywords if len(i.strip()) > 0]
 
@@ -40,7 +36,7 @@ def hello():
         query = scholar.SearchScholarQuery()
         query.set_author("")
         query.set_words(str(keyword_x))
-        query.set_num_page_results(11)
+        query.set_num_page_results(10)
 
         querier.send_query(query)
 
@@ -59,6 +55,7 @@ def hello():
         except AttributeError:
             year = "No Date"
 
+        # Will fix this
         author = ""
         publication = ""
 
@@ -70,106 +67,35 @@ def hello():
 
         citations.append(line)
 
-    # for keyword in keywords:
-    #     if keyword != "":
-    #         for i in range(citationCount):
-    #             operation(keyword)
-
     while count < citationCount:
-        print('count = ' + str(count))
-        print('len(keywords) = ' + str(len(keywords)))
         if i == len(keywords):
             i -= len(keywords)
             x += 1
 
-        # if count < len(keywords):
-        #     x = 0
-        # WILL FIX THIS UP:
-        # elif count >= len(keywords) and count < (2 * len(keywords)):
-        #     x = 1
-
-        # elif count >= (2 * len(keywords)) and count < (3 * len(keywords)):
-        #     x = 2
-
-        # elif count >= (3 * len(keywords)) and count < (4 * len(keywords)):
-        #     x = 3
-
-        # elif count >= (4 * len(keywords)) and count < (5 * len(keywords)):
-        #     x = 4
-
-        # elif count >= (5 * len(keywords)) and count < (6 * len(keywords)):
-        #     x = 5
-
-        # elif count >= (6 * len(keywords)) and count < (7 * len(keywords)):
-        #     x = 6
-
-        # elif count >= (7 * len(keywords)) and count < (8 * len(keywords)):
-        #     x = 7
-
-        # elif count >= (8 * len(keywords)) and count < (9 * len(keywords)):
-        #     x = 8
-
-        # elif count >= (9 * len(keywords)) and count < (10 * len(keywords)):
-        #     x = 9
-
-        # WILL FIX THIS REDUNDANCY
-        try:
-            operation(keywords[i], x)
-        except IndexError:
-            keywords.remove(keywords[i])
-            print('FIRST EXCEPTION')
-            if i == len(keywords):
-                i -= len(keywords)
-                x += 1
-            if not keywords:
-                break
+        while True:
             try:
                 operation(keywords[i], x)
+                break
             except IndexError:
-                keywords.remove(keywords[i])
-                print('SECOND EXCEPTION')
-                if i == len(keywords):
-                    i -= len(keywords)
                 if not keywords:
                     break
-                try:
-                    operation(keywords[i], x)
-                except IndexError:
+
+                else:
                     keywords.remove(keywords[i])
-                    print('THIRD EXCEPTION')
                     if i == len(keywords):
                         i -= len(keywords)
-                    if not keywords:
-                        break
-                    try:
-                        operation(keywords[i], x)
-                    except IndexError:
-                        keywords.remove(keywords[i])
-                        print('FOURTH EXCEPTION')
-                        if i == len(keywords):
-                            i -= len(keywords)
-                        if not keywords:
-                            print('breaking...')
-                            break
+                        x += 1
 
         count += 1
         i += 1
 
-    # for i in (keywords):
-    #     if count <= citationCount:
-    #         if i != "":
-    #             count += 1
-    #             print(i)
-    #             operation(i)
-
     citations = sorted(citations)
-    print(citations)
 
     if len(citations) != citationCount:
         if not citations:
-            citations.append('Sorry, no results')
+            citations.append('Sorry, no results.')
         else:
-            citations.append('Sorry, could not find %s results' %
+            citations.append('Sorry, could not find %s results.' %
                              citationCount)
 
     return render_template('citation.html', citations=citations)

@@ -62,11 +62,10 @@ function addInput(e) {
     console.log(inputNum)
     if (inputNum == 2) {
         input2.style.display = 'block'
-        input2.focus();
-        input2.select();
         window.setTimeout(function () {
             console.log('SET TIMEOUT')
             input2.focus()
+            input2.select();
         }, 0)
 
     }
