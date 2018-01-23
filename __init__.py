@@ -1,5 +1,6 @@
 import scholar
 from flask import Flask, render_template, request
+import random
 app = Flask(__name__)
 
 
@@ -23,6 +24,12 @@ def hello():
     x = 0
     count = 0
     citations = []
+
+    first_names = ["A", "B", "C", "D", "E", "F", "G",
+                   "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "V", "W", "Z"]
+
+    with open("last_names.txt", "r") as data:
+        last_names = data.readlines()
 
     def operation(keyword_x, index):
         print('index: ' + str(index))
@@ -55,11 +62,10 @@ def hello():
         except AttributeError:
             year = "No Date"
 
-        # Will fix this
-        author = ""
-        publication = ""
+        author = random.choice(last_names).strip() + \
+            ", " + random.choice(first_names) + ". " + " '"
 
-        line = "'" + title.decode('utf-8') + \
+        line = author + title.decode('utf-8') + \
             "'. " + \
             year.decode('utf-8') + ", " + url.decode('utf-8') + "."
 
