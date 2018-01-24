@@ -1,6 +1,5 @@
 import scholar
 import random
-from bibbypass import current_app
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
