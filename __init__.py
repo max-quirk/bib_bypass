@@ -1,3 +1,4 @@
+from app import app
 import scholar
 from flask import Flask, render_template, request
 import random
