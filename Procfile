@@ -1,2 +1,2 @@
-web: gunicorn bib-bypass:app
+web: gunicorn bib_bypass:app
 
